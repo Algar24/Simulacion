@@ -1,0 +1,24 @@
+import numpy as np
+from scipy import stats
+import matplotlib.pyplot as plt
+
+numeros_aleatorios = np.random.uniform(0, 1, 100)
+
+D, valor_p = stats.kstest(numeros_aleatorios, 'uniform', args=(0, 1))
+
+print(f"Estadístico D: {D}")
+print(f"Valor p: {valor_p}")
+
+alfa = 0.05
+if valor_p < alfa:
+    print("Rechazamos la hipótesis nula: los datos no provienen de una distribución uniforme.")
+else:
+    print("No rechazamos la hipótesis nula: los datos provienen de una distribución uniforme.")
+
+# Opcional: Visualizar los números aleatorios generados
+plt.hist(numeros_aleatorios, bins=10, edgecolor='black')
+plt.title('Histograma de Números Aleatorios')
+plt.xlabel('Valor')
+plt.ylabel('Frecuencia')
+plt.grid(True)
+plt.show()
